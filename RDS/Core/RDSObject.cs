@@ -11,7 +11,7 @@ namespace RDS.Core
         public bool Unique { get ; set ; }
         public bool Always { get ; set ; }
         public bool Enabled { get ; set ; }
-        public RDSTable RDSTable { get ; set ; }
+        public RDSTable ContentTable { get ; set ; }
 
         public RDSObject():this(0)
         {
@@ -29,7 +29,7 @@ namespace RDS.Core
             Unique = unique;
             Always = always;
             Enabled = enabled;
-            RDSTable = null;
+            ContentTable = null;
             
         }
 
@@ -42,9 +42,9 @@ namespace RDS.Core
             RDSHit?.Invoke(this, e);
         }
 
-        public virtual void OnRDSPostResultEvaluation(EventArgs e)
+        public virtual void OnRDSPostResultEvaluation(ResultEventArgs e)
         {
-            RDSPreResultEvaluation?.Invoke(this, e);
+            RDSPostResultEvaluation?.Invoke(this, e);
         }
 
         public virtual void OnRDSPreResultEvaluation(EventArgs e)

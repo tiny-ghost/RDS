@@ -6,6 +6,6 @@ namespace RDS.Interface
     {
         int Count { get; set; }
         IEnumerable<IRDSObject> Content { get; set; }
-        IEnumerable<IRDSObject> Result { get; set; }
+        IEnumerable<IRDSObject> Result();
     }
 }
