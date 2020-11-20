@@ -1,5 +1,4 @@
-﻿
-namespace RDS.Core
+﻿namespace RDS.Core
 {
     public class RDSTable
     {
