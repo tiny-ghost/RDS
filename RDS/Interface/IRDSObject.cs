@@ -16,5 +16,6 @@ namespace RDS.Interface
         void OnRDSPreResultEvaluation(EventArgs e);
         void OnRDSHit(EventArgs e);
         void OnRDSPostResultEvaluation(EventArgs e);
+        string ToString(int indentationLevel);
     }
 }
