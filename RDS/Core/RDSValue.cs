@@ -5,37 +5,58 @@ using System.Text;
 
 namespace RDS.Core
 {
-    class RDSValue<T> : IRDSValue<T>
+    public class RDSValue<T> : IRDSValue<T>
     {
-        public T Value { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int Weight { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool Unique { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool Always { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool Enabled { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public RDSTable ContentTable { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public T Value { get { return _value; } set { _value = value; } }
+        public int Weight { get; set; }
+        public bool Unique { get; set; }
+        public bool Always { get; set; }
+        public bool Enabled { get; set; }
+        public RDSTable ContentTable { get; set; }
+
+        private T _value;
+
+        public RDSValue(T value, int weight) : this(value, weight, false, false, true)
+        {
+        }
+
+        public RDSValue(T value, int weight, bool unique,bool always, bool enabled)
+        {
+            _value = value;
+            Weight = weight;
+            Unique = unique;
+            Always = always;
+            Enabled = enabled;
+            ContentTable = null;
+        }
+
+
 
         public event EventHandler RDSPreResultEvaluation;
         public event EventHandler RDSHit;
         public event ResultEventHandler RDSPostResultEvaluation;
 
-        public void OnRDSHit(EventArgs e)
+        public virtual void OnRDSHit(EventArgs e)
         {
-            throw new NotImplementedException();
+            RDSHit?.Invoke(this, e);
         }
 
-        public void OnRDSPostResultEvaluation(ResultEventArgs e)
+        public virtual void OnRDSPostResultEvaluation(ResultEventArgs e)
         {
-            throw new NotImplementedException();
+            RDSPostResultEvaluation?.Invoke(this, e);
         }
 
-        public void OnRDSPreResultEvaluation(EventArgs e)
+        public virtual void OnRDSPreResultEvaluation(EventArgs e)
         {
-            throw new NotImplementedException();
+            RDSPreResultEvaluation?.Invoke(this, e);
         }
 
         public string ToString(int indentationLevel)
         {
-            throw new NotImplementedException();
+            string indent = "".PadRight(2 * indentationLevel, ' ');
+            var sb = new StringBuilder();
+            sb.AppendFormat($"{indent} RDSValue: {this.GetType().Name}. W: {Weight} U: {Unique} A: {Always} E: {Enabled}");
+            return sb.ToString();
         }
     }
 }
