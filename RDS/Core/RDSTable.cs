@@ -110,17 +110,18 @@ namespace RDS.Core
                     }
                     else
                     {
+                        IRDSObject itemToAdd = obj;
                         if (obj is IRDSObjectCreator creator)
                         {
-                            IRDSObject adder = creator.CreateInstance();
-                            returnValue.Add(adder);
-                            obj.OnRDSHit(EventArgs.Empty);
+                            itemToAdd = creator.CreateInstance();
                         }
-                        else
-                        {
-                            obj.OnRDSHit(EventArgs.Empty);
-                        }
+                        returnValue.Add(itemToAdd);
+                        obj.OnRDSHit(EventArgs.Empty);                       
                     }
+                }
+                else
+                {
+                    obj.OnRDSHit(EventArgs.Empty);
                 }
             }
         }
