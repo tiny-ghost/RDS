@@ -144,7 +144,7 @@ namespace RDS.Core
 
             if(realDropCount > 0)
             {
-                for (int dropCount = 0;dropCount < realDropCount;dropCount++)
+                for (var dropCount = 0;dropCount < realDropCount;dropCount++)
                 {
                     var dropables = _contents.Where(obj => obj.Enabled && !obj.Always);
                     var hitWeight = RDSRandom.GetIntValue(dropables.Sum(obj => obj.Weight));
@@ -173,7 +173,7 @@ namespace RDS.Core
 
         public string ToString(int indentationLevel)
         {
-            string indent = "".PadRight(2 * indentationLevel, ' ');
+            var indent = "".PadRight(2 * indentationLevel, ' ');
             var sb = new StringBuilder();
             sb.AppendFormat($"{indent} RDSTable: {this.GetType().Name}. W: {Weight} U: {Unique} A: {Always} E: {Enabled}");
             foreach (IRDSObject obj in _contents)

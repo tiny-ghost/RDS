@@ -4,7 +4,11 @@ using System.Text;
 
 namespace RDS.Core
 {
-    class RDSNullValue
+    public class RDSNullValue : RDSValue<object>
     {
+        public RDSNullValue(int weight):base(null,weight,false,false,true)
+        {
+
+        }
     }
 }

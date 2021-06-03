@@ -54,8 +54,8 @@ namespace RDS.Core
 
         public string ToString(int indentationLevel)
         {
-            string indent = "".PadRight(2 * indentationLevel, ' ');
-            return String.Format($"{indent}RDSObject: {this.GetType().Name}. W:{Weight} U:{Unique} A:{Always} E{Enabled}");
+            var indent = "".PadRight(2 * indentationLevel, ' ');
+            return string.Format($"{indent}RDSObject: {this.GetType().Name}. W:{Weight} U:{Unique} A:{Always} E{Enabled}");
         }
         public override string ToString()
         {
