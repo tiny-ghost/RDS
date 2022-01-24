@@ -1,1 +1,3 @@
 # RDS
+
+Weighted tables system for "controlled" random map genration, item drop, card dealing etc...
